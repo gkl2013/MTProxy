@@ -1,0 +1,19 @@
+# fly.toml
+app = "your-mtproxy-name"
+primary_region = "ord"  # 推荐 ord(芝加哥) 或 lax(洛杉矶)
+
+[build]
+  dockerfile = "Dockerfile"
+
+[[services]]
+  internal_port = 443
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls"]  # 启用 TLS 终止
+
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 1000
+    soft_limit = 500
