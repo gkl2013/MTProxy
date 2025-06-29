@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: mtproxy
+    env: alpine
+    dockerfilePath: ./Dockerfile
+    port: 443
+    envVars:
+      - key: PORT
+        value: 443
+    plan: free
